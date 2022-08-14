@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tour_application/const/app_strings.dart';
 import 'package:tour_application/ui/route/route.dart';
+import 'package:tour_application/ui/styles/styles.dart';
 
 class SplashScreen extends StatelessWidget {
 
@@ -20,10 +21,7 @@ class SplashScreen extends StatelessWidget {
                 size: 100.w,
               ),
               SizedBox(height: 10.h,),
-              Text(AppString.appName,style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 20.sp,
-              ),),
+              Text(AppString.appName,style: AppStyle().myTextStyle,),
             ],
           ),
         ),
