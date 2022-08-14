@@ -68,7 +68,7 @@ class OnbordingScreen extends StatelessWidget {
                               InkWell(
                                 onTap: (){
                                   if(_currentIndex==2){
-                                    Get.toNamed(splash);
+                                    Get.toNamed(signUp);
 
                                   } else {
                                     _currentIndex + 1;
