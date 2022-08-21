@@ -67,8 +67,9 @@ class OnbordingScreen extends StatelessWidget {
                               ),),
                               InkWell(
                                 onTap: (){
-                                  if(_currentIndex==2){
+                                  if(_currentIndex==lottieFile.length-1){
                                     Get.toNamed(signUp);
+
 
                                   } else {
                                     _currentIndex + 1;

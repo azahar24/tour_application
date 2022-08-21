@@ -6,4 +6,12 @@ class AppStyle {
     fontWeight: FontWeight.w600,
     fontSize: 20.sp,
   );
+
+  InputDecoration textFieldDecoration(hint) => InputDecoration(
+    hintText: hint,
+    hintStyle: TextStyle(
+      fontSize: 15.sp,
+    ),
+
+  );
 }
