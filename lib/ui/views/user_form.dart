@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:toggle_switch/toggle_switch.dart';
+import 'package:tour_application/business_logics/form.dart';
 import 'package:tour_application/ui/route/route.dart';
 
-import '../../../const/app_colors.dart';
-import '../../styles/styles.dart';
-import '../../widgets/violatebutton.dart';
+import '../../const/app_colors.dart';
+import '../styles/styles.dart';
+import '../widgets/violatebutton.dart';
 
 class UserForm extends StatelessWidget {
   TextEditingController _nameController = TextEditingController();
@@ -15,6 +16,10 @@ class UserForm extends StatelessWidget {
 
   Rx<TextEditingController> _dobController = TextEditingController().obs;
   Rx<DateTime> selectDate = DateTime.now().obs;
+  String? dob;
+  String gender = "Male";
+
+
 
   _selectDate(BuildContext context) async {
     final selected = await showDatePicker(
@@ -28,7 +33,9 @@ class UserForm extends StatelessWidget {
       _dobController.value.text =
           "${selected.day} - ${selected.month} - ${selected.year}";
     }
+    _dobController.value.text = dob!;
     print(selectDate);
+
   }
 
   @override
@@ -79,22 +86,36 @@ class UserForm extends StatelessWidget {
                             icon: Icon(Icons.calendar_month_rounded))),
                   ),
                 ),
-                SizedBox(height: 10.h,),
+                SizedBox(
+                  height: 10.h,
+                ),
                 ToggleSwitch(
                   initialLabelIndex: 0,
                   totalSwitches: 2,
-                  labels: ['Male', 'Female',],
+                  labels: [
+                    'Male',
+                    'Female',
+                  ],
                   onToggle: (index) {
+                    if (index == 0) {
+                      gender = "Male";
+                    } else {
+                      gender = "Female";
+                    }
                     print('switched to: $index');
                   },
                 ),
-                SizedBox(height: 20.h,),
+                SizedBox(
+                  height: 20.h,
+                ),
                 ViolateButton(
-                text: 'Submit',
-                onAction: () {
-                  Get.toNamed(privacyPolicy);
-                },
-              ),
+                  text: 'Submit',
+                  onAction: () => UsersInfo().sendFromDataToDB(
+                      _nameController.text,
+                      int.parse(_phoneController.text),
+                      _addressController.text,
+                      gender),
+                ),
               ],
             ),
           ),
