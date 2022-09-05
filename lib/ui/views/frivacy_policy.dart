@@ -28,7 +28,7 @@ class PrivacyPolicy extends StatelessWidget {
               ),
               Obx(() => _loded == true ?ViolateButton(
                 text: 'Agree',
-                onAction: () =>Get.toNamed(buttomNavConttoler),
+                onAction: () =>Get.toNamed(mainHomeScreen),
               ):Text("Still Loded")),
               SizedBox(height: 10.h,)
             ],

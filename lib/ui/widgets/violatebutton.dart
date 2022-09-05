@@ -11,6 +11,7 @@ class ViolateButton extends StatelessWidget {
 
   RxBool _value = false.obs;
 
+
   @override
   Widget build(BuildContext context) {
     return Obx(() => InkWell(
@@ -46,6 +47,7 @@ class ViolateButton extends StatelessWidget {
                       Transform.scale(
                           scale: 0.4, child: CircularProgressIndicator(
                         color: Colors.white,
+
                       ))
                     ],
                   ),

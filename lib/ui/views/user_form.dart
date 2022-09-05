@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:tour_application/business_logics/form.dart';
-import 'package:tour_application/ui/route/route.dart';
 
 import '../../const/app_colors.dart';
 import '../styles/styles.dart';
@@ -15,7 +14,7 @@ class UserForm extends StatelessWidget {
   TextEditingController _addressController = TextEditingController();
 
   Rx<TextEditingController> _dobController = TextEditingController().obs;
-  Rx<DateTime> selectDate = DateTime.now().obs;
+  Rx<DateTime> selectedDate = DateTime.now().obs;
   String? dob;
   String gender = "Male";
 
@@ -24,18 +23,15 @@ class UserForm extends StatelessWidget {
   _selectDate(BuildContext context) async {
     final selected = await showDatePicker(
       context: context,
-      initialDate: selectDate.value,
-      firstDate: DateTime(1995),
-      lastDate: DateTime(2023),
+      initialDate: selectedDate.value,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2025),
     );
 
-    if (selected != null && selected != selectDate) {
-      _dobController.value.text =
-          "${selected.day} - ${selected.month} - ${selected.year}";
+    if (selected != null && selected != selectedDate) {
+      dob = "${selected.day} - ${selected.month} - ${selected.year}";
+      _dobController.value.text = dob!;
     }
-    _dobController.value.text = dob!;
-    print(selectDate);
-
   }
 
   @override
@@ -114,6 +110,7 @@ class UserForm extends StatelessWidget {
                       _nameController.text,
                       int.parse(_phoneController.text),
                       _addressController.text,
+                      dob!,
                       gender),
                 ),
               ],

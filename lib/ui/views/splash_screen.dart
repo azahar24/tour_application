@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
     if(userId == null){
       Get.toNamed(onbording);
     }else {
-      Get.toNamed(buttomNavConttoler);
+      Get.toNamed(mainHomeScreen);
     }
   }
 

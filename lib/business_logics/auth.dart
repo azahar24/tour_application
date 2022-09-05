@@ -43,7 +43,7 @@ class Auth {
       print(authCredential);
       if (authCredential!.uid.isNotEmpty) {
         Fluttertoast.showToast(msg: 'Login Successfull');
-        Get.toNamed(buttomNavConttoler);
+        Get.toNamed(mainHomeScreen);
       } else {
         print('Sign In faild');
       }

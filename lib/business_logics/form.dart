@@ -5,22 +5,26 @@ import 'package:get/get.dart';
 import 'package:tour_application/ui/route/route.dart';
 
 class UsersInfo {
-  final FirebaseAuth _auth = FirebaseAuth.instance; 
-  
-  sendFromDataToDB(String name, int phone, String address, String gender) async {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  sendFromDataToDB(
+      String name, int phone, String address, String dob, String gender) async {
     try {
-      CollectionReference _course = FirebaseFirestore.instance.collection('user-form-data');
+      CollectionReference _course =
+          FirebaseFirestore.instance.collection('user-form-data');
       _course.doc(_auth.currentUser!.email).set({
         'name': name,
-        'phone' : phone,
+        'phone': phone,
         'address': address,
+        'dob': dob,
         'gender': gender,
-      }).whenComplete(() {
-        Fluttertoast.showToast(msg: 'Added Successfully');
-        Get.toNamed(privacyPolicy);
-      },
+      }).whenComplete(
+        () {
+          Fluttertoast.showToast(msg: 'Added Successfully');
+          Get.toNamed(privacyPolicy);
+        },
       );
-    } catch (e){
+    } catch (e) {
       Fluttertoast.showToast(msg: 'error: $e');
     }
   }
